@@ -132,7 +132,7 @@ public class DataEntryFrame extends JFrame
 		this.add(formSelect);
 
 		// TODO: add in all form-fillable components:
-		JPanel formFill = new JPanel(/* TODO: add layout manager */);
+		JPanel formFill = new JPanel(/* TODO:layout manager */ new GridLayout(8, 2));
 		// TODO: add to panel...
 		this.add(formFill);
 
@@ -146,6 +146,8 @@ public class DataEntryFrame extends JFrame
 			public void mouseDragged(MouseEvent e)
 			{
 				// TODO: add a point to the panel on drag and repaint.
+				add(spanel, new Point());
+				spanel.repaint();
 			}
 		});
 		this.add(signatureInfo);
@@ -172,6 +174,7 @@ public class DataEntryFrame extends JFrame
 
 			// TODO: use the JTextFields and the signature panel to set the values
 			// of the selected FormData object.
+			
 
 			this.setVisuals(datalist.get(select));
 			DefaultComboBoxModel<String> newComboBoxModel = getComboBoxModel(datalist);
