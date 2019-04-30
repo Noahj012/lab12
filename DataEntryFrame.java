@@ -163,8 +163,11 @@ public class DataEntryFrame extends JFrame
 			public void mouseDragged(MouseEvent e)
 			{
 				// TODO: add a point to the panel on drag and repaint.
-				add(spanel, new Point(getMousePosition()));
-				spanel.repaint();
+				if (spanel.contains(getMousePosition()))
+				{
+					spanel.addPoint(new Point(getMousePosition()));
+					spanel.paintComponent(getGraphics());
+				}
 			}
 		});
 		this.add(signatureInfo);
@@ -211,7 +214,11 @@ public class DataEntryFrame extends JFrame
 		});
 
 		// TODO: add buttons to panel and add to frame
-		
+		JPanel buttonPanel = new JPanel( new GridLayout(1, 3));
+		buttonPanel.add(createForm);
+		buttonPanel.add(saveForm);
+		buttonPanel.add(resetForm);
+		this.add(buttonPanel);
 		// Add in the error message field:
 		this.errorField.setEditable(false);
 		// TODO: add error field to frame
