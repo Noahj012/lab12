@@ -96,6 +96,14 @@ public class DataEntryFrame extends JFrame
 	private void setVisuals(FormData data)
 	{
 		// TODO: set the text fields and the signature as corresponding to the fields in FormData.
+		firstName.setText(data.getFirstName());
+		middleInitial.setText(data.getMiddleInitial() + "");
+		lastName.setText(data.getLastName());
+		displayName.setText(data.getDisplayName());
+		SSN.setText(data.getSSN());
+		phone.setText(data.getPhone());
+		email.setText(data.getEmail());
+		address.setText(data.getAddress());
 	}
 
 	/**
