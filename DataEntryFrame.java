@@ -279,7 +279,6 @@ public class DataEntryFrame extends JFrame
 		inexPanel.add(importButton);
 		inexPanel.add(exportButton);
 		inexPanel.setLayout(new GridLayout(1,2));
-		this.add(inexPanel);
 		// JFrame basics:
 		this.setTitle("Example Form Fillout");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
