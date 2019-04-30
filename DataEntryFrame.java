@@ -97,7 +97,7 @@ public class DataEntryFrame extends JFrame
 	{
 		// TODO: set the text fields and the signature as corresponding to the fields in FormData.
 		firstName.setText(data.getFirstName());
-		middleInitial.setText(data.getMiddleInitial() + "");
+		middleInitial.setText(String.valueOf(data.getMiddleInitial()));
 		lastName.setText(data.getLastName());
 		displayName.setText(data.getDisplayName());
 		SSN.setText(data.getSSN());
@@ -163,7 +163,7 @@ public class DataEntryFrame extends JFrame
 			public void mouseDragged(MouseEvent e)
 			{
 				// TODO: add a point to the panel on drag and repaint.
-				add(spanel, new Point());
+				add(spanel, new Point(getMousePosition()));
 				spanel.repaint();
 			}
 		});
@@ -191,7 +191,8 @@ public class DataEntryFrame extends JFrame
 
 			// TODO: use the JTextFields and the signature panel to set the values
 			// of the selected FormData object.
-			
+			datalist.get(select).setValues(firstName.getText(), middleInitial.getText().charAt(0), lastName.getText(), displayName.getText(), SSN.getText(), phone.getText(), email.getText()
+					, address.getText(), spanel.getSignature());
 			
 
 			this.setVisuals(datalist.get(select));
