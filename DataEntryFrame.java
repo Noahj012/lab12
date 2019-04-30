@@ -133,6 +133,23 @@ public class DataEntryFrame extends JFrame
 
 		// TODO: add in all form-fillable components:
 		JPanel formFill = new JPanel(/* TODO:layout manager */ new GridLayout(8, 2));
+		formFill.add(firstNameInfo);
+		formFill.add(firstName);
+		formFill.add(midddleInitialInfo);
+		formFill.add(middleInitial);
+		formFill.add(lastNameInfo);
+		formFill.add(lastName);
+		formFill.add(displayNameInfo);
+		formFill.add(displayName);
+		formFill.add(SSNInfo);
+		formFill.add(SSN);
+		formFill.add(phoneInfo);
+		formFill.add(phone);
+		formFill.add(emailInfo);
+		formFill.add(email);
+		formFill.add(addressInfo);
+		formFill.add(address);
+		
 		// TODO: add to panel...
 		this.add(formFill);
 
@@ -175,6 +192,7 @@ public class DataEntryFrame extends JFrame
 			// TODO: use the JTextFields and the signature panel to set the values
 			// of the selected FormData object.
 			
+			
 
 			this.setVisuals(datalist.get(select));
 			DefaultComboBoxModel<String> newComboBoxModel = getComboBoxModel(datalist);
@@ -192,7 +210,7 @@ public class DataEntryFrame extends JFrame
 		});
 
 		// TODO: add buttons to panel and add to frame
-
+		
 		// Add in the error message field:
 		this.errorField.setEditable(false);
 		// TODO: add error field to frame
