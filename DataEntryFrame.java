@@ -8,10 +8,12 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Class to create a GUI for an example program to accept form submissions. The program keeps a list of several
@@ -163,13 +165,14 @@ public class DataEntryFrame extends JFrame
 			public void mouseDragged(MouseEvent e)
 			{
 				// TODO: add a point to the panel on drag and repaint.
-				if (spanel.contains(getMousePosition()))
-				{
+//				if (spanel.contains(getMousePosition()))
+//				{
 					spanel.addPoint(new Point(getMousePosition()));
 					spanel.paintComponent(getGraphics());
-				}
+				//}
 			}
 		});
+		
 		this.add(signatureInfo);
 		this.add(spanel);
 
@@ -204,6 +207,14 @@ public class DataEntryFrame extends JFrame
 			formSelect.setSelectedIndex(select);
 
 			// TODO: display an error message if setting the values failed. Else, display a success message.w
+			if (!(datalist.get(select).getFirstName().equals(firstName.getText())))
+			{
+				errorField.setText("Failed to set values");
+			}
+			else
+			{
+				errorField.setText("Succeded to set values");
+			}
 		});
 
 		JButton resetForm = new JButton("Reset");
@@ -214,15 +225,14 @@ public class DataEntryFrame extends JFrame
 		});
 
 		// TODO: add buttons to panel and add to frame
-		JPanel buttonPanel = new JPanel( new GridLayout(1, 3));
-		buttonPanel.add(createForm);
-		buttonPanel.add(saveForm);
-		buttonPanel.add(resetForm);
-		this.add(buttonPanel);
+		formHandling.add(createForm);
+		formHandling.add(saveForm);
+		formHandling.add(resetForm);
+		this.add(formHandling);
 		// Add in the error message field:
 		this.errorField.setEditable(false);
 		// TODO: add error field to frame
-
+		this.add(errorField);
 		// Add in the import/export panel:
 		JButton importButton = new JButton("Import");
 
@@ -235,16 +245,27 @@ public class DataEntryFrame extends JFrame
 			//		 You will use the file to replace the datalist object. I.e. you will be loading in a new
 			//		 list of formdata.
 			// TODO: display error message on fail, else display success message
-
+			
         	// Use this code snippet to reset visuals after importing:
-			/*
+			   JFileChooser chooser = new JFileChooser();
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			        "Txt Files", "txt");
+			    chooser.setFileFilter(filter);
+			    int returnVal = chooser.showOpenDialog(importButton);
+			    if(returnVal == JFileChooser.APPROVE_OPTION)
+			    {
+			       System.out.println("You chose to open this file: " +
+			            chooser.getSelectedFile().getName());
+			    }
+			    
             int select = 0;
 			DefaultComboBoxModel<String> newComboBoxModel = getComboBoxModel(datalist);
 			formSelect.setModel(newComboBoxModel);
 			formSelect.setSelectedIndex(select);
 			this.setVisuals(datalist.get(select));
-			*/
+			
 		});
+		
 		JButton exportButton = new JButton("Export");
 		exportButton.addActionListener((e) -> {
 
@@ -254,7 +275,11 @@ public class DataEntryFrame extends JFrame
 		});
 
 		// TODO: add import/export to panel and add to frame
-
+		JPanel inexPanel = new JPanel();
+		inexPanel.add(importButton);
+		inexPanel.add(exportButton);
+		inexPanel.setLayout(new GridLayout(1,2));
+		this.add(inexPanel);
 		// JFrame basics:
 		this.setTitle("Example Form Fillout");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
